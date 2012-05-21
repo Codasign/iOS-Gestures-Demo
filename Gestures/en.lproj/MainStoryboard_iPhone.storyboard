@@ -60,6 +60,10 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="hand.png" id="xpp-Bd-hog">
+                                <rect key="frame" x="79" y="97" width="162" height="220"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Gesture around..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="59E-l7-qw0">
                                 <rect key="frame" x="20" y="20" width="280" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -67,15 +71,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="xpp-Bd-hog">
-                                <rect key="frame" x="46" y="154" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Gestures" id="dlf-SA-nwb"/>
                     <connections>
+                        <outlet property="handImage" destination="xpp-Bd-hog" id="z8P-sV-1B4"/>
                         <outlet property="positionLabel" destination="59E-l7-qw0" id="0r3-YG-I5M"/>
                     </connections>
                 </viewController>
@@ -83,6 +84,9 @@
             <point key="canvasLocation" x="826" y="601"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hand.png" width="162" height="210"/>
+    </resources>
     <classes>
         <class className="GestureRecognizers" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GestureRecognizers.h"/>

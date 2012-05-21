@@ -76,7 +76,8 @@
     positionLabel.text = [NSString stringWithFormat:@"ROTATION GESTURE\nRotation: %f, velocity: %f", rotation, velocity];
     NSLog(@"ROTATION GESTURE: Rotation: %f, velocity: %f", rotation, velocity);
     
-    handImage.transform = CGAffineTransformMakeRotation(rotation);
+    CGAffineTransform t = handImage.transform;
+    handImage.transform = CGAffineTransformRotate(t, rotation);
     
     if(sender.state == UIGestureRecognizerStateEnded){
         positionLabel.text = @"ROTATION ENDED";
