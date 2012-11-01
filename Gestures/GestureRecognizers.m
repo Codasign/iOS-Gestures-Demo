@@ -9,7 +9,8 @@
 #import "GestureRecognizers.h"
 
 @interface GestureRecognizers ()
-
+@property (strong) IBOutlet UILabel *positionLabel;
+@property (strong) IBOutlet UIImageView *handImage;
 @end
 
 @implementation GestureRecognizers
@@ -18,10 +19,20 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+
     NSLog(@"\n\nON GESTURES VIEW\n\n");
+    
     positionLabel.text = @"Gesture around...";
     handImage.transform = CGAffineTransformIdentity;
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initGestureRecognizers];
+}
+
 
 -(void)initGestureRecognizers{
     
@@ -51,10 +62,9 @@
 - (IBAction)handlePanGesture:(UIPanGestureRecognizer *)sender {
 
     CGPoint translatedPoint = [(UIPanGestureRecognizer*)sender translationInView:self.view];
-
-    positionLabel.text = [NSString stringWithFormat:@"PAN GESTURE\nTranslated point: %0.0f, %0.0f", translatedPoint.x, translatedPoint.y];
     NSLog(@"PAN GESTURE: Translated point: %0.0f, %0.0f", translatedPoint.x, translatedPoint.y);
     
+    positionLabel.text = [NSString stringWithFormat:@"PAN GESTURE\nTranslated point: %0.0f, %0.0f", translatedPoint.x, translatedPoint.y];
     handImage.transform = CGAffineTransformMakeTranslation(translatedPoint.x, translatedPoint.y);
     
     if(sender.state == UIGestureRecognizerStateEnded){
@@ -72,13 +82,13 @@
 -(IBAction)handleRotationGesture:(UIGestureRecognizer *) sender{
     CGFloat rotation = [(UIRotationGestureRecognizer *) sender rotation]; 
     CGFloat velocity = [(UIRotationGestureRecognizer *) sender velocity];
+    NSLog(@"ROTATION GESTURE: Rotation: %f, velocity: %f", rotation, velocity);
     
     positionLabel.text = [NSString stringWithFormat:@"ROTATION GESTURE\nRotation: %f, velocity: %f", rotation, velocity];
-    NSLog(@"ROTATION GESTURE: Rotation: %f, velocity: %f", rotation, velocity);
     
     CGAffineTransform t = handImage.transform;
     handImage.transform = CGAffineTransformRotate(t, rotation);
-    
+
     if(sender.state == UIGestureRecognizerStateEnded){
         positionLabel.text = @"ROTATION ENDED";
         NSLog(@"ROTATION ENDED\n\n");
@@ -87,16 +97,16 @@
 
 /*******************************************************************
  UIPinchGestureRecognizer: Use this to recognize pinches.
- 
  */
 - (IBAction)handlePinchGesture:(UIGestureRecognizer *)sender {
     CGFloat scale = [(UIPinchGestureRecognizer *)sender scale];
     CGFloat velocity = [(UIPinchGestureRecognizer *)sender velocity];
+    NSLog(@"PINCH GESTURE: Scale: %f, Velocity: %f", scale, velocity);
     
+    //Apply the transform
     handImage.transform = CGAffineTransformMakeScale(scale, scale);
     
     positionLabel.text = [NSString stringWithFormat:@"PINCH GESTURE\nScale: %f, Velocity: %f", scale, velocity];
-    NSLog(@"PINCH GESTURE: Scale: %f, Velocity: %f", scale, velocity);
     
     if(sender.state == UIGestureRecognizerStateEnded){
         positionLabel.text = @"PINCH ENDED";
@@ -104,12 +114,6 @@
     }
 }
 
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initGestureRecognizers];
-}
 
 - (void)viewDidUnload
 {

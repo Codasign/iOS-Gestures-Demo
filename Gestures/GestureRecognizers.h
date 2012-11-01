@@ -8,14 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GestureRecognizers : UIViewController{
-    
-    IBOutlet UILabel *positionLabel;
-    IBOutlet UIImageView *handImage;
-    
-}
-
-@property (nonatomic) IBOutlet UILabel *positionLabel;
-@property (nonatomic) IBOutlet UIImageView *handImage;
+@interface GestureRecognizers : UIViewController
 
 @end

@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SimpleTouchRecognizers : UIViewController{
-    
-    IBOutlet UILabel *positionLabel;
-    
-}
-
-@property (nonatomic) IBOutlet UILabel *positionLabel;
+@interface SimpleTouchRecognizers : UIViewController
 
 @end
